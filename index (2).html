@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة بيانات الموظفين - مركز المعلومات والتوثيق السياحي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* الأنماط CSS ستكون هنا */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- رأس الصفحة -->
+        <header class="header">
+            <div class="logo-section">
+                <h1><i class="fas fa-users"></i> نظام إدارة بيانات الموظفين</h1>
+                <p>مركز المعلومات والتوثيق السياحي</p>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                    <span class="user-name">مسؤول النظام</span>
+                    <span class="user-role">مدير الموارد البشرية</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- مؤشر التقدم -->
+        <div class="stepper">
+            <div class="step active" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-label">التعريف الأساسي</div>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-label">البيانات الاجتماعية</div>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-label">التواصل والمؤهل</div>
+            </div>
+            <div class="step" data-step="4">
+                <div class="step-circle">4</div>
+                <div class="step-label">التبعية والمصرفية</div>
+            </div>
+            <div class="step" data-step="5">
+                <div class="step-circle">5</div>
+                <div class="step-label">البيانات الوظيفية</div>
+            </div>
+            <div class="step" data-step="6">
+                <div class="step-circle">6</div>
+                <div class="step-label">المراجعة والحفظ</div>
+            </div>
+        </div>
+
+        <!-- نموذج الخطوات -->
+        <form id="employeeForm">
+            <!-- الخطوة 1: التعريف الأساسي -->
+            <div class="step-content active" id="step1">
+                <h2><i class="fas fa-id-card"></i> التعريف الأساسي للموظف</h2>
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nationalId">الرقم الوطني <span class="required">*</span></label>
+                            <input type="text" id="nationalId" name="nationalId" required 
+                                   pattern="[0-9]{12}" title="يجب أن يتكون الرقم الوطني من 12 رقمًا"
+                                   placeholder="أدخل الرقم الوطني المكون من 12 رقمًا">
+                            <div class="validation-message" id="nationalIdValidation"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullNameAr">الاسم الرباعي (عربي) <span class="required">*</span></label>
+                            <input type="text" id="fullNameAr" name="fullNameAr" required 
+                                   placeholder="أدخل الاسم الرباعي باللغة العربية">
+                        </div>
+                        <div class="form-group">
+                            <label for="fullNameEn">الاسم باللغة الإنجليزية</label>
+                            <input type="text" id="fullNameEn" name="fullNameEn" 
+                                   placeholder="أدخل الاسم باللغة الإنجليزية">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">الجنس <span class="required">*</span></label>
+                            <select id="gender" name="gender" required>
+                                <option value="">اختر الجنس</option>
+                                <option value="ذكر">ذكر</option>
+                                <option value="أنثى">أنثى</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nationality">الجنسية <span class="required">*</span></label>
+                            <input type="text" id="nationality" name="nationality" required 
+                                   value="ليبي" placeholder="الجنسية">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birthDate">تاريخ الميلاد <span class="required">*</span></label>
+                            <input type="date" id="birthDate" name="birthDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthPlace">مكان الميلاد</label>
+                            <input type="text" id="birthPlace" name="birthPlace" 
+                                   placeholder="أدخل مكان الميلاد">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 2: البيانات الاجتماعية والهوية -->
+            <div class="step-content" id="step2">
+                <h2><i class="fas fa-user-friends"></i> البيانات الاجتماعية والهوية</h2>
+                
+                <div class="section-divider">
+                    <h3><i class="fas fa-heart"></i> الحالة الاجتماعية</h3>
+                </div>
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="maritalStatus">الحالة الاجتماعية <span class="required">*</span></label>
+                            <select id="maritalStatus" name="maritalStatus" required>
+                                <option value="">اختر الحالة الاجتماعية</option>
+                                <option value="أعزب">أعزب</option>
+                                <option value="متزوج">متزوج</option>
+                                <option value="متزوجة">متزوجة</option>
+                                <option value="مطلق">مطلق</option>
+                                <option value="مطلقة">مطلقة</option>
+                                <option value="أرمل">أرمل</option>
+                                <option value="أرملة">أرملة</option>
+                                <option value="متوفي">متوفي</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="childrenField" style="display: none;">
+                            <label for="childrenCount">عدد الأبناء</label>
+                            <input type="number" id="childrenCount" name="childrenCount" 
+                                   min="0" placeholder="عدد الأبناء">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-divider">
+                    <h3><i class="fas fa-passport"></i> الهوية</h3>
+                </div>
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="personalId">رقم البطاقة الشخصية</label>
+                            <input type="text" id="personalId" name="personalId" 
+                                   placeholder="رقم البطاقة الشخصية">
+                        </div>
+                        <div class="form-group">
+                            <label for="passportNumber">رقم جواز السفر</label>
+                            <input type="text" id="passportNumber" name="passportNumber" 
+                                   placeholder="رقم جواز السفر">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="passportExpiry">تاريخ انتهاء الجواز</label>
+                            <input type="date" id="passportExpiry" name="passportExpiry">
+                        </div>
+                        <div class="form-group">
+                            <label for="passportCopy">مرفق صورة الجواز</label>
+                            <div class="file-upload">
+                                <input type="file" id="passportCopy" name="passportCopy" 
+                                       accept="image/*,.pdf">
+                                <button type="button" class="upload-btn">
+                                    <i class="fas fa-upload"></i> رفع الملف
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-divider">
+                    <h3><i class="fas fa-home"></i> العائلة</h3>
+                </div>
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="familyBookNumber">رقم كتيب العائلة</label>
+                            <input type="text" id="familyBookNumber" name="familyBookNumber" 
+                                   placeholder="رقم كتيب العائلة">
+                        </div>
+                        <div class="form-group">
+                            <label for="familySheetNumber">رقم ورقة العائلة</label>
+                            <input type="text" id="familySheetNumber" name="familySheetNumber" 
+                                   placeholder="رقم ورقة العائلة">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="registrationNumber">رقم القيد</label>
+                            <input type="text" id="registrationNumber" name="registrationNumber" 
+                                   placeholder="رقم القيد">
+                        </div>
+                        <div class="form-group">
+                            <label for="familyStatusCopy">مرفق الوضع العائلي</label>
+                            <div class="file-upload">
+                                <input type="file" id="familyStatusCopy" name="familyStatusCopy" 
+                                       accept="image/*,.pdf">
+                                <button type="button" class="upload-btn">
+                                    <i class="fas fa-upload"></i> رفع الملف
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 3: التواصل والمؤهل العلمي -->
+            <div class="step-content" id="step3">
+                <h2><i class="fas fa-graduation-cap"></i> التواصل والمؤهل العلمي</h2>
+                
+                <div class="tabs">
+                    <div class="tab-nav">
+                        <button type="button" class="tab-btn active" data-tab="contact">
+                            <i class="fas fa-phone-alt"></i> التواصل
+                        </button>
+                        <button type="button" class="tab-btn" data-tab="education">
+                            <i class="fas fa-graduation-cap"></i> المؤهل العلمي
+                        </button>
+                    </div>
+                    
+                    <div class="tab-content active" id="contactTab">
+                        <div class="form-section">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">المدينة <span class="required">*</span></label>
+                                    <input type="text" id="city" name="city" required 
+                                           placeholder="المدينة">
+                                </div>
+                                <div class="form-group">
+                                    <label for="street">الشارع</label>
+                                    <input type="text" id="street" name="street" 
+                                           placeholder="الشارع">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phoneNumber">رقم الهاتف <span class="required">*</span></label>
+                                    <input type="tel" id="phoneNumber" name="phoneNumber" required 
+                                           placeholder="رقم الهاتف">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">البريد الإلكتروني</label>
+                                    <input type="email" id="email" name="email" 
+                                           placeholder="البريد الإلكتروني">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bloodType">فصيلة الدم</label>
+                                    <select id="bloodType" name="bloodType">
+                                        <option value="">اختر فصيلة الدم</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="personalPhoto">الصورة الشخصية</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="personalPhoto" name="personalPhoto" 
+                                               accept="image/*">
+                                        <button type="button" class="upload-btn">
+                                            <i class="fas fa-upload"></i> رفع الصورة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="educationTab">
+                        <div class="form-section">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="qualification">المؤهل العلمي <span class="required">*</span></label>
+                                    <select id="qualification" name="qualification" required>
+                                        <option value="">اختر المؤهل العلمي</option>
+                                        <option value="ثانوية عامة">ثانوية عامة</option>
+                                        <option value="دبلوم متوسط">دبلوم متوسط</option>
+                                        <option value="دبلوم عالي">دبلوم عالي</option>
+                                        <option value="بكالوريوس">بكالوريوس</option>
+                                        <option value="ليسانس">ليسانس</option>
+                                        <option value="ماجستير">ماجستير</option>
+                                        <option value="دكتوراه">دكتوراه</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="qualificationYear">سنة الحصول عليه <span class="required">*</span></label>
+                                    <input type="number" id="qualificationYear" name="qualificationYear" 
+                                           min="1950" max="2024" required placeholder="سنة الحصول">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="qualificationSource">جهة الحصول عليه <span class="required">*</span></label>
+                                    <input type="text" id="qualificationSource" name="qualificationSource" required 
+                                           placeholder="جهة الحصول على المؤهل">
+                                </div>
+                                <div class="form-group">
+                                    <label for="specialization">التخصص <span class="required">*</span></label>
+                                    <input type="text" id="specialization" name="specialization" required 
+                                           placeholder="التخصص">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="accreditationType">نوع الاعتماد</label>
+                                    <select id="accreditationType" name="accreditationType">
+                                        <option value="">اختر نوع الاعتماد</option>
+                                        <option value="معتمد">معتمد</option>
+                                        <option value="غير معتمد">غير معتمد</option>
+                                        <option value="معادل">معادل</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="qualificationCopy">مرفق الشهادة</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="qualificationCopy" name="qualificationCopy" 
+                                               accept="image/*,.pdf">
+                                        <button type="button" class="upload-btn">
+                                            <i class="fas fa-upload"></i> رفع الملف
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 4: التبعية والبيانات المصرفية -->
+            <div class="step-content" id="step4">
+                <h2><i class="fas fa-building"></i> التبعية والبيانات المصرفية</h2>
+                
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-sitemap"></i> التبعية الإدارية</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-section">
+                                <div class="form-group">
+                                    <label for="higherAuthority">الجهة العليا</label>
+                                    <input type="text" id="higherAuthority" name="higherAuthority" 
+                                           value="مركز المعلومات والتوثيق السياحي" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="officeDepartment">المكتب / الإدارة <span class="required">*</span></label>
+                                    <select id="officeDepartment" name="officeDepartment" required>
+                                        <option value="">اختر المكتب / الإدارة</option>
+                                        <option value="مدير عام المركز">مدير عام المركز</option>
+                                        <option value="مدير إدارة الشؤون الإدارية والمالية">مدير إدارة الشؤون الإدارية والمالية</option>
+                                        <option value="مدير إدارة تكنولوجيا المعلومات">مدير إدارة تكنولوجيا المعلومات</option>
+                                        <option value="مدير إدارة الدراسات والتخطيط">مدير إدارة الدراسات والتخطيط</option>
+                                        <option value="مدير إدارة التوثيق والارشفة">مدير إدارة التوثيق والارشفة</option>
+                                        <option value="مدير مكتب المدير العام">مدير مكتب المدير العام</option>
+                                        <option value="مدير مكتب القانوني">مدير مكتب القانوني</option>
+                                        <option value="مدير مكتب المراجعة الداخلية">مدير مكتب المراجعة الداخلية</option>
+                                        <option value="مدير مكتب المتابعة">مدير مكتب المتابعة</option>
+                                        <option value="مدير مكتب الفروع">مدير مكتب الفروع</option>
+                                        <option value="رئيس قسم الموارد البشرية">رئيس قسم الموارد البشرية</option>
+                                        <option value="رئيس قسم نظم المعلومات">رئيس قسم نظم المعلومات</option>
+                                        <option value="رئيس قسم الشؤون الإدارية">رئيس قسم الشؤون الإدارية</option>
+                                        <option value="رئيس قسم الشؤون المالية">رئيس قسم الشؤون المالية</option>
+                                        <option value="موظف">موظف</option>
+                                        <option value="أخرى">أخرى</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="administrativeAuthority">الجهة الإدارية</label>
+                                    <input type="text" id="administrativeAuthority" name="administrativeAuthority" 
+                                           placeholder="الجهة الإدارية">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-university"></i> البيانات المصرفية</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-section">
+                                <div class="form-group">
+                                    <label for="bankName">المصرف <span class="required">*</span></label>
+                                    <select id="bankName" name="bankName" required>
+                                        <option value="">اختر المصرف</option>
+                                        <option value="الجمهورية">الجمهورية</option>
+                                        <option value="التجاري الوطني">التجاري الوطني</option>
+                                        <option value="الاستقلال">الاستقلال</option>
+                                        <option value="الصحاري">الصحاري</option>
+                                        <option value="الوحدة">الوحدة</option>
+                                        <option value="الأمان">الأمان</option>
+                                        <option value="الإسلامي الليبي">الإسلامي الليبي</option>
+                                        <option value="شمال افريقيا">شمال افريقيا</option>
+                                        <option value="اليقين">اليقين</option>
+                                        <option value="أخرى">أخرى</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="bankBranch">الفرع <span class="required">*</span></label>
+                                    <input type="text" id="bankBranch" name="bankBranch" required 
+                                           placeholder="فرع المصرف">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="accountNumber">رقم الحساب <span class="required">*</span></label>
+                                    <input type="text" id="accountNumber" name="accountNumber" required 
+                                           placeholder="رقم الحساب المصرفي">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="financialNumber">الرقم المالي</label>
+                                    <input type="text" id="financialNumber" name="financialNumber" 
+                                           placeholder="الرقم المالي">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="bankPhone">رقم الهاتف المربوط بالحساب</label>
+                                    <input type="tel" id="bankPhone" name="bankPhone" 
+                                           placeholder="رقم الهاتف المربوط بالحساب">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="bankCardNumber">رقم البطاقة المصرفية</label>
+                                    <input type="text" id="bankCardNumber" name="bankCardNumber" 
+                                           placeholder="رقم البطاقة المصرفية">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 5: البيانات الوظيفية -->
+            <div class="step-content" id="step5">
+                <h2><i class="fas fa-briefcase"></i> البيانات الوظيفية</h2>
+                
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-group employment-type">
+                            <label>الحالة الوظيفية <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="employmentStatus" value="تعيين" checked>
+                                    <span class="radio-custom"></span>
+                                    تعيين
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="employmentStatus" value="عقد">
+                                    <span class="radio-custom"></span>
+                                    عقد
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="employmentStatus" value="ندب">
+                                    <span class="radio-custom"></span>
+                                    ندب
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="employmentStatus" value="إعارة">
+                                    <span class="radio-custom"></span>
+                                    إعارة
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- نموذج التعيين -->
+                <div class="employment-form active" id="appointmentForm">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user-tie"></i> بيانات التعيين</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="employeeNumber">الرقم الوظيفي <span class="required">*</span></label>
+                                <input type="text" id="employeeNumber" name="employeeNumber" required 
+                                       placeholder="الرقم الوظيفي">
+                            </div>
+                            <div class="form-group">
+                                <label for="appointmentDecisionNumber">رقم قرار التعيين <span class="required">*</span></label>
+                                <input type="text" id="appointmentDecisionNumber" name="appointmentDecisionNumber" required 
+                                       placeholder="رقم قرار التعيين">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointmentDecisionCopy">مرفق قرار التعيين</label>
+                                <div class="file-upload">
+                                    <input type="file" id="appointmentDecisionCopy" name="appointmentDecisionCopy" 
+                                           accept="image/*,.pdf">
+                                    <button type="button" class="upload-btn">
+                                        <i class="fas fa-upload"></i> رفع الملف
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointmentDate">تاريخ التعيين <span class="required">*</span></label>
+                                <input type="date" id="appointmentDate" name="appointmentDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate">تاريخ المباشرة <span class="required">*</span></label>
+                                <input type="date" id="startDate" name="startDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="initialGrade">الدرجة عند التعيين <span class="required">*</span></label>
+                                <select id="initialGrade" name="initialGrade" required>
+                                    <option value="">اختر الدرجة</option>
+                                    <option value="الخامسة">الخامسة</option>
+                                    <option value="السادسة">السادسة</option>
+                                    <option value="السابعة">السابعة</option>
+                                    <option value="الثامنة">الثامنة</option>
+                                    <option value="التاسعة">التاسعة</option>
+                                    <option value="العاشرة">العاشرة</option>
+                                    <option value="الحادية عشر">الحادية عشر</option>
+                                    <option value="الثانية عشر">الثانية عشر</option>
+                                    <option value="الثالثة عشر">الثالثة عشر</option>
+                                    <option value="الرابعة عشر">الرابعة عشر</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="currentGrade">الدرجة الحالية <span class="required">*</span></label>
+                                <select id="currentGrade" name="currentGrade" required>
+                                    <option value="">اختر الدرجة</option>
+                                    <option value="الخامسة">الخامسة</option>
+                                    <option value="السادسة">السادسة</option>
+                                    <option value="السابعة">السابعة</option>
+                                    <option value="الثامنة">الثامنة</option>
+                                    <option value="التاسعة">التاسعة</option>
+                                    <option value="العاشرة">العاشرة</option>
+                                    <option value="الحادية عشر">الحادية عشر</option>
+                                    <option value="الثانية عشر">الثانية عشر</option>
+                                    <option value="الثالثة عشر">الثالثة عشر</option>
+                                    <option value="الرابعة عشر">الرابعة عشر</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="gradeDate">تاريخ الحصول عليها</label>
+                                <input type="date" id="gradeDate" name="gradeDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="jobTitle">الوظيفة</label>
+                                <input type="text" id="jobTitle" name="jobTitle" 
+                                       placeholder="الوظيفة">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="allowanceMonth">شهر العلاوة</label>
+                                <select id="allowanceMonth" name="allowanceMonth">
+                                    <option value="">اختر شهر العلاوة</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="employeeStatus">وضع الموظف</label>
+                                <select id="employeeStatus" name="employeeStatus">
+                                    <option value="">اختر وضع الموظف</option>
+                                    <option value="على رأس العمل">على رأس العمل</option>
+                                    <option value="إجازة">إجازة</option>
+                                    <option value="إعارة">إعارة</option>
+                                    <option value="ندب">ندب</option>
+                                    <option value="متقاعد">متقاعد</option>
+                                    <option value="متوفي">متوفي</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="leaveBalance">رصيد الإجازة</label>
+                                <input type="text" id="leaveBalance" name="leaveBalance" 
+                                       placeholder="رصيد الإجازة" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- نموذج العقد -->
+                <div class="employment-form" id="contractForm">
+                    <div class="form-section">
+                        <h3><i class="fas fa-file-contract"></i> بيانات العقد</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contractNumber">رقم العقد <span class="required">*</span></label>
+                                <input type="text" id="contractNumber" name="contractNumber" 
+                                       placeholder="رقم العقد">
+                            </div>
+                            <div class="form-group">
+                                <label for="contractType">نوع العقد <span class="required">*</span></label>
+                                <select id="contractType" name="contractType">
+                                    <option value="">اختر نوع العقد</option>
+                                    <option value="محدد المدة">محدد المدة</option>
+                                    <option value="غير محدد المدة">غير محدد المدة</option>
+                                    <option value="مشروع">مشروع</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contractStartDate">تاريخ البداية <span class="required">*</span></label>
+                                <input type="date" id="contractStartDate" name="contractStartDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="contractEndDate">تاريخ النهاية</label>
+                                <input type="date" id="contractEndDate" name="contractEndDate">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contractInitialGrade">الدرجة عند التعاقد</label>
+                                <select id="contractInitialGrade" name="contractInitialGrade">
+                                    <option value="">اختر الدرجة</option>
+                                    <option value="الخامسة">الخامسة</option>
+                                    <option value="السادسة">السادسة</option>
+                                    <option value="السابعة">السابعة</option>
+                                    <option value="الثامنة">الثامنة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contractCurrentGrade">الدرجة الحالية</label>
+                                <select id="contractCurrentGrade" name="contractCurrentGrade">
+                                    <option value="">اختر الدرجة</option>
+                                    <option value="الخامسة">الخامسة</option>
+                                    <option value="السادسة">السادسة</option>
+                                    <option value="السابعة">السابعة</option>
+                                    <option value="الثامنة">الثامنة</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- نموذج الندب -->
+                <div class="employment-form" id="delegationForm">
+                    <div class="form-section">
+                        <h3><i class="fas fa-exchange-alt"></i> بيانات الندب</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="delegationType">نوع الندب <span class="required">*</span></label>
+                                <select id="delegationType" name="delegationType">
+                                    <option value="">اختر نوع الندب</option>
+                                    <option value="ندب داخلي">ندب داخلي</option>
+                                    <option value="ندب خارجي">ندب خارجي</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="delegationFrom">الجهة المنتدب منها <span class="required">*</span></label>
+                                <input type="text" id="delegationFrom" name="delegationFrom" 
+                                       placeholder="الجهة المنتدب منها">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="delegationDecisionNumber">رقم القرار <span class="required">*</span></label>
+                                <input type="text" id="delegationDecisionNumber" name="delegationDecisionNumber" 
+                                       placeholder="رقم قرار الندب">
+                            </div>
+                            <div class="form-group">
+                                <label for="delegationDecisionCopy">مرفق القرار</label>
+                                <div class="file-upload">
+                                    <input type="file" id="delegationDecisionCopy" name="delegationDecisionCopy" 
+                                           accept="image/*,.pdf">
+                                    <button type="button" class="upload-btn">
+                                        <i class="fas fa-upload"></i> رفع الملف
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="delegationStartDate">تاريخ البداية <span class="required">*</span></label>
+                                <input type="date" id="delegationStartDate" name="delegationStartDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="delegationEndDate">تاريخ النهاية</label>
+                                <input type="date" id="delegationEndDate" name="delegationEndDate">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- نموذج الإعارة -->
+                <div class="employment-form" id="secondmentForm">
+                    <div class="form-section">
+                        <h3><i class="fas fa-handshake"></i> بيانات الإعارة</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="secondmentFrom">الجهة المعار منها <span class="required">*</span></label>
+                                <input type="text" id="secondmentFrom" name="secondmentFrom" 
+                                       placeholder="الجهة المعار منها">
+                            </div>
+                            <div class="form-group">
+                                <label for="secondmentDecisionNumber">رقم القرار <span class="required">*</span></label>
+                                <input type="text" id="secondmentDecisionNumber" name="secondmentDecisionNumber" 
+                                       placeholder="رقم قرار الإعارة">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="secondmentDecisionCopy">مرفق القرار</label>
+                                <div class="file-upload">
+                                    <input type="file" id="secondmentDecisionCopy" name="secondmentDecisionCopy" 
+                                           accept="image/*,.pdf">
+                                    <button type="button" class="upload-btn">
+                                        <i class="fas fa-upload"></i> رفع الملف
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="secondmentStartDate">تاريخ البداية <span class="required">*</span></label>
+                                <input type="date" id="secondmentStartDate" name="secondmentStartDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="secondmentEndDate">تاريخ النهاية</label>
+                                <input type="date" id="secondmentEndDate" name="secondmentEndDate">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الخطوة 6: المراجعة والحفظ -->
+            <div class="step-content" id="step6">
+                <h2><i class="fas fa-clipboard-check"></i> مراجعة البيانات</h2>
+                
+                <div class="review-section">
+                    <div class="summary-cards">
+                        <div class="summary-card">
+                            <div class="summary-card-header">
+                                <h3><i class="fas fa-user"></i> البيانات الشخصية</h3>
+                                <button type="button" class="edit-btn" data-section="step1">
+                                    <i class="fas fa-edit"></i> تعديل
+                                </button>
+                            </div>
+                            <div class="summary-card-body">
+                                <div class="summary-item">
+                                    <span class="summary-label">الاسم الرباعي:</span>
+                                    <span class="summary-value" id="reviewFullNameAr">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">الرقم الوطني:</span>
+                                    <span class="summary-value" id="reviewNationalId">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">الجنس:</span>
+                                    <span class="summary-value" id="reviewGender">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">تاريخ الميلاد:</span>
+                                    <span class="summary-value" id="reviewBirthDate">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">الحالة الاجتماعية:</span>
+                                    <span class="summary-value" id="reviewMaritalStatus">غير محدد</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-card-header">
+                                <h3><i class="fas fa-university"></i> البيانات المصرفية</h3>
+                                <button type="button" class="edit-btn" data-section="step4">
+                                    <i class="fas fa-edit"></i> تعديل
+                                </button>
+                            </div>
+                            <div class="summary-card-body">
+                                <div class="summary-item">
+                                    <span class="summary-label">المصرف:</span>
+                                    <span class="summary-value" id="reviewBankName">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">الفرع:</span>
+                                    <span class="summary-value" id="reviewBankBranch">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">رقم الحساب:</span>
+                                    <span class="summary-value" id="reviewAccountNumber">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">المكتب / الإدارة:</span>
+                                    <span class="summary-value" id="reviewOfficeDepartment">غير محدد</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-card-header">
+                                <h3><i class="fas fa-briefcase"></i> البيانات الوظيفية</h3>
+                                <button type="button" class="edit-btn" data-section="step5">
+                                    <i class="fas fa-edit"></i> تعديل
+                                </button>
+                            </div>
+                            <div class="summary-card-body">
+                                <div class="summary-item">
+                                    <span class="summary-label">الحالة الوظيفية:</span>
+                                    <span class="summary-value" id="reviewEmploymentStatus">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">الرقم الوظيفي:</span>
+                                    <span class="summary-value" id="reviewEmployeeNumber">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">تاريخ التعيين:</span>
+                                    <span class="summary-value" id="reviewAppointmentDate">غير محدد</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">الدرجة الحالية:</span>
+                                    <span class="summary-value" id="reviewCurrentGrade">غير محدد</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="confirmation-section">
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="dataConfirmation" name="dataConfirmation" required>
+                                <span class="checkbox-custom"></span>
+                                أقر بصحة البيانات المذكورة أعلاه وأتحمل المسؤولية القانونية عن أي خطأ فيها
+                            </label>
+                        </div>
+                        
+                        <div class="form-actions review-actions">
+                            <button type="button" class="btn btn-secondary" id="backToStep5">
+                                <i class="fas fa-arrow-right"></i> رجوع
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> حفظ نهائي
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- أزرار التنقل -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-right"></i> السابق
+                </button>
+                <button type="button" class="btn btn-secondary" id="saveDraftBtn">
+                    <i class="fas fa-save"></i> حفظ مؤقت
+                </button>
+                <button type="button" class="btn btn-primary" id="nextBtn">
+                    التالي <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </form>
+        
+        <!-- رسالة نجاح -->
+        <div id="successMessage" class="success-message">
+            <div class="success-content">
+                <i class="fas fa-check-circle"></i>
+                <h2>تم حفظ بيانات الموظف بنجاح</h2>
+                <p>تم حفظ بيانات الموظف في قاعدة البيانات بنجاح. يمكنك الآن إضافة موظف جديد أو العودة إلى القائمة.</p>
+                <div class="success-actions">
+                    <button type="button" class="btn btn-secondary" id="addAnotherBtn">
+                        <i class="fas fa-user-plus"></i> إضافة موظف جديد
+                    </button>
+                    <button type="button" class="btn btn-primary" id="goToListBtn">
+                        <i class="fas fa-list"></i> العودة إلى القائمة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // الكود JavaScript سيكون هنا
+    </script>
+</body>
+</html>
