@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  font-family: "Cairo", Arial, sans-serif;
+  background: #f6f8fa;
+  direction: rtl;
+}
+
+header {
+  background: #0f6d5c;
+  color: #fff;
+  padding: 15px 30px;
+}
+
+.container {
+  padding: 30px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #0f6d5c;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #ccc;
+}
