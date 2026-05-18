@@ -1,30 +1,112 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>الدخول – منظومة شؤون الموظفين</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة الموارد البشرية | مركز المعلومات والتوثيق السياحي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{--primary:#0f6d5c;--primary2:#0a5145;--gold:#c7a55b;--blue:#1f3c88;--bg:#f4f7fb;--card:#fff;--text:#1f2937;--muted:#667085;--border:#e5e7eb;--red:#dc2626;--green:#16a34a;--orange:#d97706;--shadow:0 18px 45px rgba(15,23,42,.08)}
+    *{box-sizing:border-box}body{margin:0;font-family:Cairo,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .app{display:flex;min-height:100vh}.sidebar{width:290px;background:linear-gradient(180deg,var(--primary),var(--primary2));color:#fff;padding:22px;position:sticky;top:0;height:100vh;overflow:auto}.brand{display:flex;gap:12px;align-items:center;margin-bottom:26px}.logo{width:52px;height:52px;border-radius:17px;background:rgba(255,255,255,.15);display:grid;place-items:center;font-weight:800;border:1px solid rgba(255,255,255,.22)}.brand h1{font-size:18px;margin:0}.brand p{font-size:12px;color:#d7fff2;margin:2px 0 0}.nav{display:grid;gap:7px}.nav a{color:#eafff8;text-decoration:none;padding:11px 13px;border-radius:14px;font-weight:700;cursor:pointer}.nav a.active,.nav a:hover{background:rgba(255,255,255,.14);color:#fff}.side-note{margin-top:22px;background:rgba(255,255,255,.12);padding:14px;border-radius:16px;font-size:13px;color:#e8fff7;line-height:1.8}.main{flex:1;padding:24px;max-width:1500px;margin:0 auto;width:100%}.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}.topbar h2{margin:0;font-size:28px}.topbar p{margin:4px 0 0;color:var(--muted)}.toolbar{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:13px;padding:10px 15px;font-family:inherit;font-weight:800;cursor:pointer}.btn.primary{background:var(--primary);color:#fff}.btn.light{background:#fff;border:1px solid var(--border);color:var(--text)}.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:16px}.kpi{background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);border-radius:22px;padding:16px}.kpi span{color:var(--muted);font-size:13px}.kpi b{display:block;font-size:27px;color:var(--primary);margin-top:5px}.kpi small{color:var(--muted)}.panel{background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);border-radius:22px;padding:18px;margin-bottom:16px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.panel h3{margin:0;font-size:20px}.filters{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:10px;margin-bottom:14px}input,select{border:1px solid var(--border);border-radius:13px;padding:11px;font-family:inherit;background:#fff;min-width:0}.charts{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px}.chart-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:12px;height:330px}.chart-card.wide{grid-column:span 2}.chart-card canvas{max-height:270px}.table-wrap{overflow:auto;border:1px solid var(--border);border-radius:18px}.table{width:100%;border-collapse:collapse;min-width:1100px}.table th,.table td{border-bottom:1px solid var(--border);padding:10px;text-align:right;font-size:13px}.table th{background:#f8fafc;color:#475467;position:sticky;top:0;z-index:1}.badge{display:inline-block;border-radius:999px;padding:4px 9px;font-weight:800;font-size:12px}.male{background:#eff6ff;color:#1d4ed8}.female{background:#fdf2f8;color:#be185d}.ok{background:#ecfdf5;color:var(--green)}.warn{background:#fff7ed;color:var(--orange)}.danger{background:#fef2f2;color:var(--red)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tab{background:#fff;border:1px solid var(--border);border-radius:999px;padding:8px 14px;cursor:pointer;font-weight:800}.tab.active{background:var(--primary);color:#fff}.section{display:none}.section.active{display:block}.cards2{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.mini-report{background:#fbfdff;border:1px solid var(--border);border-radius:18px;padding:15px}.mini-report h4{margin:0 0 8px}.mini-report ul{margin:0;padding:0 18px}.footer{color:var(--muted);text-align:center;padding:10px}.print-title{display:none}
+    @media(max-width:1100px){.app{display:block}.sidebar{width:100%;height:auto;position:relative;border-radius:0 0 24px 24px}.kpis{grid-template-columns:repeat(2,1fr)}.charts{grid-template-columns:1fr}.chart-card.wide{grid-column:auto}.filters{grid-template-columns:1fr 1fr}.cards2{grid-template-columns:1fr}}
+    @media(max-width:620px){.main{padding:12px}.topbar{display:block}.kpis,.filters{grid-template-columns:1fr}.toolbar{margin-top:10px}.panel{padding:14px;border-radius:18px}.topbar h2{font-size:22px}}
+    @media print{.sidebar,.toolbar,.filters,.tabs{display:none}.app{display:block}.main{padding:0}.panel,.kpi{box-shadow:none}.print-title{display:block;text-align:center}.section{display:block}.chart-card{break-inside:avoid}}
+  </style>
 </head>
 <body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="logo">HR</div><div><h1>منظومة الموظفين</h1><p>مركز المعلومات والتوثيق السياحي</p></div></div>
+      <nav class="nav">
+        <a class="active" onclick="showSection('dashboard',this)">لوحة المؤشرات</a>
+        <a onclick="showSection('employees',this)">سجل الموظفين</a>
+        <a onclick="showSection('leaves',this)">الإجازات</a>
+        <a onclick="showSection('resignations',this)">المستقيلون</a>
+        <a onclick="showSection('reports',this)">التقارير</a>
+      </nav>
+      <div class="side-note">لوحة عرض فقط مرتبطة بملف بيانات الموظفين. يمكن رفع الملفات كما هي إلى GitHub Pages داخل مستودع hr.</div>
+    </aside>
 
-<header>
-  <h1>منظومة شؤون الموظفين</h1>
-  <p>مركز المعلومات والتوثيق السياحي</p>
-</header>
+    <main class="main">
+      <div class="print-title"><h2>تقرير الموارد البشرية - مركز المعلومات والتوثيق السياحي</h2></div>
+      <header class="topbar">
+        <div><h2>لوحة الموارد البشرية</h2><p id="summaryLine">عرض إحصائي وتفاعلي لبيانات موظفي المركز</p></div>
+        <div class="toolbar"><button class="btn light" onclick="resetFilters()">إعادة ضبط</button><button class="btn light" onclick="exportCSV()">تصدير CSV</button><button class="btn primary" onclick="window.print()">طباعة التقرير</button></div>
+      </header>
 
-<div class="container">
-  <div class="card">
-    <h2>إدخال الرقم الوطني</h2>
+      <section id="dashboard" class="section active">
+        <div class="kpis" id="kpis"></div>
+        <div class="panel">
+          <div class="panel-head"><h3>الفلاتر والتحليل</h3><span class="badge ok" id="filteredCount">0 موظف</span></div>
+          <div class="filters">
+            <input id="search" placeholder="بحث بالاسم أو الرقم الوطني أو الوظيفة..." oninput="applyFilters()">
+            <select id="departmentFilter" onchange="applyFilters()"><option value="">كل الإدارات/الوظائف</option></select>
+            <select id="genderFilter" onchange="applyFilters()"><option value="">كل الجنس</option></select>
+            <select id="gradeFilter" onchange="applyFilters()"><option value="">كل الدرجات</option></select>
+            <select id="qualificationFilter" onchange="applyFilters()"><option value="">كل المؤهلات</option></select>
+          </div>
+          <div class="charts">
+            <div class="chart-card"><h3>حسب الجنس</h3><canvas id="genderChart"></canvas></div>
+            <div class="chart-card"><h3>الحالة الاجتماعية</h3><canvas id="maritalChart"></canvas></div>
+            <div class="chart-card"><h3>نوع التوظيف</h3><canvas id="typeChart"></canvas></div>
+            <div class="chart-card wide"><h3>أعلى الإدارات/الوظائف عددًا</h3><canvas id="deptChart"></canvas></div>
+            <div class="chart-card"><h3>الترقيات المستحقة</h3><canvas id="promoChart"></canvas></div>
+          </div>
+        </div>
+      </section>
 
-    <div class="form-group">
-      <label>الرقم الوطني</label>
-      <input type="text" placeholder="أدخل الرقم الوطني (12 رقم)">
-    </div>
+      <section id="employees" class="section">
+        <div class="panel"><div class="panel-head"><h3>سجل الموظفين - القوة الفعلية</h3><span class="badge ok" id="empCount"></span></div><div class="table-wrap"><table class="table"><thead><tr><th>ت</th><th>الاسم</th><th>الرقم الوطني</th><th>الجنس</th><th>الحالة</th><th>الإدارة/الوظيفة</th><th>الدرجة</th><th>المؤهل</th><th>التخصص</th><th>المدينة</th><th>ترقية مستحقة</th></tr></thead><tbody id="employeesBody"></tbody></table></div></div>
+      </section>
 
-    <br>
-    <button class="btn btn-primary">دخول</button>
+      <section id="leaves" class="section">
+        <div class="panel"><div class="panel-head"><h3>تقرير الإجازات</h3><span class="badge warn" id="leaveCount"></span></div><div class="charts"><div class="chart-card wide"><h3>أعلى أرصدة الإجازات</h3><canvas id="leaveChart"></canvas></div><div class="chart-card"><h3>شرائح الرصيد</h3><canvas id="leaveBucketChart"></canvas></div></div><div class="table-wrap" style="margin-top:14px"><table class="table"><thead><tr><th>ت</th><th>الاسم</th><th>رصيد 2024</th><th>رصيد مرحل 2025</th><th>استحقاق سنوي</th><th>آخر حركة</th></tr></thead><tbody id="leavesBody"></tbody></table></div></div>
+      </section>
+
+      <section id="resignations" class="section">
+        <div class="panel"><div class="panel-head"><h3>كشف المستقيلين</h3><span class="badge danger" id="resCount"></span></div><div class="table-wrap"><table class="table"><thead><tr><th>رقم</th><th>الاسم</th><th>الدرجة</th><th>تاريخ الاستقالة</th><th>الوظيفة</th><th>المؤهل</th><th>ملاحظات</th></tr></thead><tbody id="resBody"></tbody></table></div></div>
+      </section>
+
+      <section id="reports" class="section">
+        <div class="panel"><h3>ملخصات تنفيذية جاهزة للعرض</h3><div class="cards2" id="reportCards"></div></div>
+      </section>
+      <div class="footer">إعداد مركز المعلومات والتوثيق السياحي © 2026</div>
+    </main>
   </div>
-</div>
-
+  <script src="data.js"></script>
+  <script>
+    const employees = HR_DATA.employees || [];
+    const leaves = HR_DATA.leaves || [];
+    const resignations = HR_DATA.resignations || [];
+    let filtered = [...employees];
+    let charts = {};
+    const $ = id => document.getElementById(id);
+    function norm(v){return (v||'').toString().trim()}
+    function groupCount(arr, key){const m={}; arr.forEach(x=>{const v=norm(x[key])||'غير محدد'; m[v]=(m[v]||0)+1}); return m}
+    function topN(obj,n=8){return Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n)}
+    function uniq(key){return [...new Set(employees.map(e=>norm(e[key])).filter(Boolean))].sort()}
+    function fillSelect(id,key){const s=$(id); uniq(key).forEach(v=>{const o=document.createElement('option'); o.value=v;o.textContent=v;s.appendChild(o)})}
+    function init(){fillSelect('departmentFilter','job');fillSelect('genderFilter','gender');fillSelect('gradeFilter','grade');fillSelect('qualificationFilter','qualification');applyFilters(); renderLeaves(); renderResignations(); renderReports();}
+    function applyFilters(){const q=norm($('search').value).toLowerCase(), dep=$('departmentFilter').value, g=$('genderFilter').value, gr=$('gradeFilter').value, qual=$('qualificationFilter').value; filtered=employees.filter(e=>{const text=Object.values(e).join(' ').toLowerCase(); return (!q||text.includes(q))&&(!dep||e.job===dep)&&(!g||e.gender===g)&&(!gr||e.grade===gr)&&(!qual||e.qualification===qual)}); renderAll();}
+    function resetFilters(){['search','departmentFilter','genderFilter','gradeFilter','qualificationFilter'].forEach(id=>$(id).value='');applyFilters()}
+    function renderAll(){renderKPIs();renderEmployees();renderCharts();$('filteredCount').textContent=filtered.length+' موظف'}
+    function renderKPIs(){const male=filtered.filter(e=>e.gender==='ذكر').length, female=filtered.filter(e=>e.gender==='أنثى').length; const due2026=filtered.filter(e=>String(e.promotion_due).includes('2026')).length; const enriched=filtered.filter(e=>e.gender||e.qualification).length; $('kpis').innerHTML=`<div class="kpi"><span>القوة الفعلية</span><b>${filtered.length}</b><small>موظف ضمن العرض الحالي</small></div><div class="kpi"><span>ذكور</span><b>${male}</b><small>${pct(male,filtered.length)}%</small></div><div class="kpi"><span>إناث</span><b>${female}</b><small>${pct(female,filtered.length)}%</small></div><div class="kpi"><span>ترقيات 2026</span><b>${due2026}</b><small>حسب البيانات المتاحة</small></div><div class="kpi"><span>بيانات تفصيلية</span><b>${enriched}</b><small>سجل مرتبط ببيانات شخصية</small></div>`}
+    function pct(v,t){return t?Math.round(v*100/t):0}
+    function renderEmployees(){ $('empCount').textContent=filtered.length+' سجل'; $('employeesBody').innerHTML=filtered.map((e,i)=>`<tr><td>${i+1}</td><td>${safe(e.name)}</td><td>${safe(e.national_id)}</td><td><span class="badge ${e.gender==='أنثى'?'female':'male'}">${safe(e.gender||'غير محدد')}</span></td><td>${safe(e.marital_status)}</td><td>${safe(e.job)}</td><td>${safe(e.grade)}</td><td>${safe(e.qualification)}</td><td>${safe(e.major)}</td><td>${safe(e.city)}</td><td>${safe(e.promotion_due)}</td></tr>`).join('')}
+    function renderLeaves(){ $('leaveCount').textContent=leaves.length+' سجل'; $('leavesBody').innerHTML=leaves.map((l,i)=>`<tr><td>${i+1}</td><td>${safe(l['الاسم'])}</td><td>${safe(l['رصيد 2024'])}</td><td>${safe(l['رصيد مرحل 2025'])}</td><td>${safe(l['استحقاق سنوي'])}</td><td>${safe(l['اخر حركة'])}</td></tr>`).join('')}
+    function renderResignations(){ $('resCount').textContent=resignations.length+' سجل'; $('resBody').innerHTML=resignations.map(r=>`<tr><td>${safe(r['رقم'])}</td><td>${safe(r['الاسم'])}</td><td>${safe(r['الدرجة الوظيفية'])}</td><td>${safe(r['تاريخ الاستقالة'])}</td><td>${safe(r['الوظيفة'])}</td><td>${safe(r['المؤهل'])}</td><td>${safe(r['ملاحظات'])}</td></tr>`).join('')}
+    function renderReports(){const topDept=topN(groupCount(employees,'job'),1)[0]||['غير محدد',0]; const topQual=topN(groupCount(employees,'qualification'),1)[0]||['غير محدد',0]; const highLeaves=leaves.filter(l=>(l['رصيد مرحل 2025']||0)>=300).length; $('reportCards').innerHTML=`<div class="mini-report"><h4>ملخص القوة الفعلية</h4><ul><li>إجمالي السجلات: ${employees.length}</li><li>أكبر وظيفة/إدارة: ${topDept[0]} (${topDept[1]})</li><li>المستقيلون: ${resignations.length}</li></ul></div><div class="mini-report"><h4>ملخص المؤهلات</h4><ul><li>أكثر مؤهل تكرارًا: ${topQual[0]}</li><li>عدد السجلات التفصيلية: ${HR_DATA.personal_records.length}</li><li>يمكن التصفية حسب المؤهل والتخصص.</li></ul></div><div class="mini-report"><h4>ملخص الإجازات</h4><ul><li>سجلات الإجازات: ${leaves.length}</li><li>أرصدة مرتفعة +300 يوم: ${highLeaves}</li><li>يوصى بمراجعة الأرصدة المرتفعة.</li></ul></div>`}
+    function chart(id,type,labels,data,opts={}){if(charts[id])charts[id].destroy(); charts[id]=new Chart($(id),{type,data:{labels,datasets:[{label:'العدد',data,borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:type==='doughnut'||type==='pie',position:'bottom'}},scales:type==='doughnut'||type==='pie'?{}:{y:{beginAtZero:true,ticks:{precision:0}}},...opts}})}
+    function renderCharts(){let g=groupCount(filtered,'gender');chart('genderChart','doughnut',Object.keys(g),Object.values(g));let m=groupCount(filtered,'marital_status');chart('maritalChart','pie',Object.keys(m),Object.values(m));let t=groupCount(filtered,'employment_type');chart('typeChart','bar',Object.keys(t),Object.values(t));let d=topN(groupCount(filtered,'job'),8);chart('deptChart','bar',d.map(x=>x[0]),d.map(x=>x[1]),{indexAxis:'y'});let p=groupCount(filtered,'promotion_due');let pp=topN(p,8);chart('promoChart','bar',pp.map(x=>x[0]),pp.map(x=>x[1])); renderLeaveCharts();}
+    function renderLeaveCharts(){const top=[...leaves].filter(l=>l['رصيد مرحل 2025']!=null).sort((a,b)=>(b['رصيد مرحل 2025']||0)-(a['رصيد مرحل 2025']||0)).slice(0,10); chart('leaveChart','bar',top.map(x=>x['الاسم']),top.map(x=>x['رصيد مرحل 2025']),{indexAxis:'y'}); const buckets={'أقل من 100':0,'100-199':0,'200-299':0,'300 فأكثر':0}; leaves.forEach(l=>{const v=l['رصيد مرحل 2025']||0; if(v<100)buckets['أقل من 100']++; else if(v<200)buckets['100-199']++; else if(v<300)buckets['200-299']++; else buckets['300 فأكثر']++}); chart('leaveBucketChart','doughnut',Object.keys(buckets),Object.values(buckets));}
+    function showSection(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));el.classList.add('active'); setTimeout(()=>{if(id==='leaves')renderLeaveCharts()},50)}
+    function exportCSV(){const headers=['name','national_id','gender','marital_status','job','grade','qualification','major','city','promotion_due']; const csv=[headers.join(',')].concat(filtered.map(e=>headers.map(h=>'"'+String(e[h]||'').replaceAll('"','""')+'"').join(','))).join('\n'); const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='hr_employees_filtered.csv'; a.click();}
+    function safe(v){return (v===null||v===undefined||v==='')?'—':String(v).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+    init();
+  </script>
 </body>
 </html>
